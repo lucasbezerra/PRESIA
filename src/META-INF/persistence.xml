@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="apsiaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>banco.CabAutCmr</class>
+    <class>banco.RetenTrib</class>
+    <class>banco.Escolaridade</class>
+    <class>banco.Pessoa</class>
+    <class>banco.UnidadeSaude</class>
+    <class>banco.NivelHierarquia</class>
+    <class>banco.TipoLogradouro</class>
+    <class>banco.AtvEnsino</class>
+    <class>banco.FluxoCli</class>
+    <class>banco.UsuarioGrupo</class>
+    <class>banco.Usuario</class>
+    <class>banco.StatusCmrAut</class>
+    <class>banco.OrgaoEmissor</class>
+    <class>banco.Pais</class>
+    <class>banco.EsferaAdm</class>
+    <class>banco.NatOrg</class>
+    <class>banco.Regional</class>
+    <class>banco.Atendimento</class>
+    <class>banco.EstadoCivil</class>
+    <class>banco.Entidade</class>
+    <class>banco.TipoUnidadeSaude</class>
+    <class>banco.RacaCor</class>
+    <class>banco.Uf</class>
+    <class>banco.SituacaoFamiliar</class>
+    <class>banco.Municipio</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/cmrdbjua"/>
+      <property name="javax.persistence.jdbc.password" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+    </properties>
+  </persistence-unit>
+</persistence>
