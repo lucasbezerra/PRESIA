@@ -1,4 +1,4 @@
-package ui;
+package frames;
 
 import model.Unidade;
 import banco.Conexao;
@@ -9,12 +9,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class UnidadeFrame extends javax.swing.JDialog {
 
-    public UnidadeFrame(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+  public UnidadeFrame(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    initComponents();
+  }
 
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -118,7 +118,7 @@ public class UnidadeFrame extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 625, 60));
 
-        btConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/iconOK.gif"))); // NOI18N
+        btConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Icon_OK.png"))); // NOI18N
         btConfirmar.setText("Confirmar");
         btConfirmar.setMaximumSize(new java.awt.Dimension(120, 30));
         btConfirmar.setMinimumSize(new java.awt.Dimension(120, 30));
@@ -128,9 +128,9 @@ public class UnidadeFrame extends javax.swing.JDialog {
                 btConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(btConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 120, 30));
+        getContentPane().add(btConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 130, 30));
 
-        btFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/filter.gif"))); // NOI18N
+        btFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filter.gif"))); // NOI18N
         btFiltrar.setText("Filtrar");
         btFiltrar.setMaximumSize(new java.awt.Dimension(120, 30));
         btFiltrar.setMinimumSize(new java.awt.Dimension(120, 30));
@@ -140,106 +140,101 @@ public class UnidadeFrame extends javax.swing.JDialog {
                 btFiltrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, -1, 30));
+        getContentPane().add(btFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 130, 30));
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-633)/2, (screenSize.height-391)/2, 633, 391);
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean removeLinha(DefaultTableModel model) {
-        int linha = model.getRowCount();
-        for (int i = linha - 1; i >= 0; --i) {
-            model.removeRow(i);
-        }
-        return false;
+  public boolean removeLinha(DefaultTableModel model) {
+    int linha = model.getRowCount();
+    for (int i = linha - 1; i >= 0; --i) {
+      model.removeRow(i);
     }
+    return false;
+  }
 
     private void btFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFiltrarActionPerformed
-            Connection conexao = Conexao.getConexao();
-            Statement stmt = null;
-        try {
-            stmt = (Statement) conexao.createStatement();
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro: "+erro);
+      Connection conexao = Conexao.getConexao();
+      Statement stmt = null;
+      try {
+        stmt = (Statement) conexao.createStatement();
+      } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + erro);
+      }
+      try {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        removeLinha(model);
+        String texto = editPesquisa.getText().toUpperCase();
+        String sql = "select id_unidade_saude as id, cod_cnes as cnes, nome_fantasia as nome, cnpj_unidade_saude as cnpj "
+                + "from unidade_saude "
+                + "where tipo_unidade_saude in ('P', 'A') and ativo='S' and nome_fantasia like '%" + texto + "%' "
+                + "order by cnes";
+        ResultSet result = stmt.executeQuery(sql);
+        while (result.next()) {
+          model.addRow(new Object[]{result.getInt("id"), result.getString("cnes"), result.getString("nome"), result.getString("cnpj")});
         }
-        try {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            removeLinha(model);
-            String texto = editPesquisa.getText().toUpperCase();
-            String sql = "select id_unidade_saude as id, cod_cnes as cnes, nome_fantasia as nome, cnpj_unidade_saude as cnpj "
-                    + "from unidade_saude "
-                    + "where tipo_unidade_saude in ('P', 'A') and ativo='S' and nome_fantasia like '%" + texto + "%' "
-                    + "order by cnes";
-            ResultSet result = stmt.executeQuery(sql);
-            while (result.next()) {
-                model.addRow(new Object[]{result.getInt("id"), result.getString("cnes"), result.getString("nome"), result.getString("cnpj")});
-            }
-            jTable1.setModel(model);
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro: "+erro);
-        }
+        jTable1.setModel(model);
+      } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + erro);
+      }
     }//GEN-LAST:event_btFiltrarActionPerformed
 
     private void editPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editPesquisaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btFiltrar.doClick();
-        }
+      if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        btFiltrar.doClick();
+      }
     }//GEN-LAST:event_editPesquisaKeyPressed
 
     private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
-        int linha = -1;
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        linha = jTable1.getSelectedRow();
-        String codi = model.getValueAt(linha, 0).toString();
-        String cnes = model.getValueAt(linha, 1).toString();
-        String nome = model.getValueAt(linha, 2).toString();
-        String cnpj = model.getValueAt(linha, 3).toString();
-        if (linha == -1) {
-            System.out.println("Erro");
-        } else {
-            int resposta = JOptionPane.showConfirmDialog(this, "Confirma " + nome + "?", "Atenção", 0);
-            if (resposta == 0) {
-                Unidade.setNome(nome);
-                Unidade.setCodigo(codi);
-                Unidade.setCnes(cnes);
-                Unidade.setCnpj(cnpj);
-                this.dispose();
-            }
+      int linha = -1;
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+      linha = jTable1.getSelectedRow();
+      String codi = model.getValueAt(linha, 0).toString();
+      String cnes = model.getValueAt(linha, 1).toString();
+      String nome = model.getValueAt(linha, 2).toString();
+      String cnpj = model.getValueAt(linha, 3).toString();
+      if (linha == -1) {
+        System.out.println("Erro");
+      } else {
+        Unidade.setNome(nome);
+        Unidade.setCodigo(codi);
+        Unidade.setCnes(cnes);
+        Unidade.setCnpj(cnpj);
+        this.dispose();
     }//GEN-LAST:event_btConfirmarActionPerformed
-    }
+  }
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int linha = jTable1.getSelectedRow();
-        String nome = model.getValueAt(linha, 2).toString();
-        editPesquisa.setText(nome);
-        if(evt.getClickCount() == 2){
-            btConfirmar.doClick();
-        }
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+      int linha = jTable1.getSelectedRow();
+      String nome = model.getValueAt(linha, 2).toString();
+      editPesquisa.setText(nome);
+      if (evt.getClickCount() == 2) {
+        btConfirmar.doClick();
+      }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        editPesquisa.requestFocus();
+      editPesquisa.requestFocus();
     }//GEN-LAST:event_formWindowActivated
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+  public static void main(String args[]) {
+    java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
-                UnidadeFrame dialog = new UnidadeFrame(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+      public void run() {
+        UnidadeFrame dialog = new UnidadeFrame(new javax.swing.JFrame(), true);
+        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+          @Override
+          public void windowClosing(java.awt.event.WindowEvent e) {
+            System.exit(0);
+          }
         });
-    }
+        dialog.setVisible(true);
+      }
+    });
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConfirmar;
     private javax.swing.JButton btFiltrar;

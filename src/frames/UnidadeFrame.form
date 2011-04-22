@@ -164,7 +164,7 @@
     <Component class="javax.swing.JButton" name="btConfirmar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ui/images/iconOK.gif"/>
+          <Image iconType="3" name="/images/Icon_OK.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -182,14 +182,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="500" y="320" width="120" height="30"/>
+          <AbsoluteConstraints x="490" y="320" width="130" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btFiltrar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ui/images/filter.gif"/>
+          <Image iconType="3" name="/images/filter.gif"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Filtrar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -207,7 +207,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="370" y="320" width="-1" height="30"/>
+          <AbsoluteConstraints x="350" y="320" width="130" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

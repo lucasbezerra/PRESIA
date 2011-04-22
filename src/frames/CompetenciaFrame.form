@@ -125,6 +125,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btDefinir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/accept-24x24.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Definir"/>
       </Properties>
       <Events>

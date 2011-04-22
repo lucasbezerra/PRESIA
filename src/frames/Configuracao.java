@@ -1,7 +1,6 @@
-package ui;
+package frames;
 
 import apsia.Criptografia;
-import utilitarios.HdSerial;
 import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,7 +28,7 @@ public class Configuracao extends javax.swing.JDialog {
             ReadWritePropertiesFile.WriteProperty("database.properties", "Senha", Criptografia.CriptaBase64(new String(editSenha.getPassword())));
             ReadWritePropertiesFile.WriteProperty("config.properties", "PastaBpa", Criptografia.CriptaBase64(editPastaBpa.getText()));
             ReadWritePropertiesFile.WriteProperty("config.properties", "PastaLog", Criptografia.CriptaBase64(editPastaLog.getText()));
-            ReadWritePropertiesFile.WriteProperty("config.properties", "SerialHd", Criptografia.CriptaBase64(labelSerialHd.getText()));
+            //ReadWritePropertiesFile.WriteProperty("config.properties", "SerialHd", Criptografia.CriptaBase64(labelSerialHd.getText()));
             JOptionPane.showMessageDialog(this, "O Sistema será reiniciado para efetivar a alteração", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
@@ -43,7 +42,7 @@ public class Configuracao extends javax.swing.JDialog {
         editSenha.setText(configuracao.get(4));
         editPastaBpa.setText(configuracao.get(5));
         editPastaLog.setText(configuracao.get(6));
-        labelSerialHd.setText(HdSerial.getHDSerial("C:"));
+        //labelSerialHd.setText(HdSerial.getHDSerial("C:"));
     }
 
     private void lerConfiguracao() {
@@ -55,7 +54,7 @@ public class Configuracao extends javax.swing.JDialog {
         configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("database.properties", "Senha")));
         configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "PastaBpa")));
         configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "PastaLog")));
-        configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "SerialHd")));
+        //configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "SerialHd")));
     }
 
     public Configuracao(java.awt.Frame parent, boolean modal) {
@@ -80,8 +79,6 @@ public class Configuracao extends javax.swing.JDialog {
         btCancelar = new javax.swing.JButton();
         btGravar = new javax.swing.JButton();
         btTestar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        labelSerialHd = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         editPastaBpa = new javax.swing.JTextField();
@@ -90,33 +87,42 @@ public class Configuracao extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editServidor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        editServidor.setFont(new java.awt.Font("Tahoma", 0, 12));
         editServidor.setName("editServidor"); // NOI18N
+        getContentPane().add(editServidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 32, 115, 30));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jLabel1.setFont(new java.awt.Font("Andale Mono", 0, 18));
         jLabel1.setText("Host:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, -1));
 
-        editBanco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        editBanco.setFont(new java.awt.Font("Tahoma", 0, 12));
         editBanco.setName("editBanco"); // NOI18N
+        getContentPane().add(editBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 32, 186, 30));
 
         editUsuario.setFont(new java.awt.Font("Tahoma", 0, 12));
+        getContentPane().add(editUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 82, 115, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jLabel4.setFont(new java.awt.Font("Andale Mono", 0, 18));
         jLabel4.setText("Senha:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jLabel2.setFont(new java.awt.Font("Andale Mono", 0, 18));
         jLabel2.setText("Banco:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12));
+        jLabel3.setFont(new java.awt.Font("Andale Mono", 0, 18));
         jLabel3.setText("Usuário:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 90, -1));
 
         editSenha.setFont(new java.awt.Font("Tahoma", 0, 12));
         editSenha.setMaximumSize(new java.awt.Dimension(50, 21));
         editSenha.setMinimumSize(new java.awt.Dimension(50, 21));
         editSenha.setPreferredSize(new java.awt.Dimension(50, 21));
+        getContentPane().add(editSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 82, 187, 30));
 
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/remove-24x24.png"))); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-24x24.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.setMaximumSize(new java.awt.Dimension(124, 30));
         btCancelar.setMinimumSize(new java.awt.Dimension(80, 30));
@@ -126,8 +132,9 @@ public class Configuracao extends javax.swing.JDialog {
                 btCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 124, -1));
 
-        btGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/accept-24x24.png"))); // NOI18N
+        btGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept-24x24.png"))); // NOI18N
         btGravar.setText("Gravar");
         btGravar.setMaximumSize(new java.awt.Dimension(123, 30));
         btGravar.setMinimumSize(new java.awt.Dimension(80, 30));
@@ -137,8 +144,9 @@ public class Configuracao extends javax.swing.JDialog {
                 btGravarActionPerformed(evt);
             }
         });
+        getContentPane().add(btGravar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 135, -1));
 
-        btTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/testarConexao.PNG"))); // NOI18N
+        btTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/testarConexao.PNG"))); // NOI18N
         btTestar.setText("Testar");
         btTestar.setAlignmentX(0.5F);
         btTestar.setMaximumSize(new java.awt.Dimension(125, 30));
@@ -149,14 +157,17 @@ public class Configuracao extends javax.swing.JDialog {
                 btTestarActionPerformed(evt);
             }
         });
+        getContentPane().add(btTestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 125, -1));
 
-        jLabel5.setText("Serial HD:");
+        jLabel6.setFont(new java.awt.Font("Andale Mono", 0, 18));
+        jLabel6.setText("Pasta BPA:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        labelSerialHd.setText(" ");
-
-        jLabel6.setText("Pasta de BPA:");
-
-        jLabel7.setText("Pasta de Log:");
+        jLabel7.setFont(new java.awt.Font("Andale Mono", 0, 18));
+        jLabel7.setText("Pasta Log:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(editPastaBpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 132, 289, 30));
+        getContentPane().add(editPastaLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 182, 291, 30));
 
         jButton1.setText("...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -164,107 +175,18 @@ public class Configuracao extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 34, 30));
 
-        jButton2.setText("jButton2");
+        jButton2.setText("...");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btTestar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelSerialHd, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(editUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(editServidor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(editBanco, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(editSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(editPastaLog))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(editPastaBpa, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton2, 0, 0, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, Short.MAX_VALUE))))
-                        .addGap(16, 16, 16)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(editBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(editUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(editSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(labelSerialHd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editPastaBpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(editPastaLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btTestar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 34, 30));
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-445)/2, (screenSize.height-270)/2, 445, 270);
+        setBounds((screenSize.width-556)/2, (screenSize.height-325)/2, 556, 325);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btTestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTestarActionPerformed
@@ -354,9 +276,7 @@ public class Configuracao extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel labelSerialHd;
     // End of variables declaration//GEN-END:variables
 }

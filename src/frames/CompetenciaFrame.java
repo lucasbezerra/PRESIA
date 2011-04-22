@@ -1,4 +1,4 @@
-package ui;
+package frames;
 
 import model.Competencia;
 import banco.Conexao;
@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CompetenciaFrame extends javax.swing.JDialog {
@@ -46,6 +44,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012" }));
         jComboBox2.setName("comboAno"); // NOI18N
 
+        btDefinir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept-24x24.png"))); // NOI18N
         btDefinir.setText("Definir");
         btDefinir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +105,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
           try {
               st = (Statement) conexao.createStatement();
           } catch (SQLException ex) {
-              Logger.getLogger(CompetenciaFrame.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(null, "Erro: " + ex.getLocalizedMessage());
           }
           String sql = "select count(*) as qtde from ano_mes where ano=" + ano + " and mes=" + mes;
           ResultSet result = st.executeQuery(sql);
@@ -118,7 +117,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
               this.dispose();
           }
       } catch (SQLException ex) {
-          Logger.getLogger(CompetenciaFrame.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(null, "Erro: " + ex.getLocalizedMessage());
       }
   }//GEN-LAST:event_btDefinirActionPerformed
 
