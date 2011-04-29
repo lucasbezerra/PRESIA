@@ -227,9 +227,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="lblUnidade">
-          <Properties>
-            <Property name="text" type="java.lang.String" value=" "/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="91" y="27" width="-1" height="-1"/>

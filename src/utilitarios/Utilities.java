@@ -5,23 +5,23 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
-
 
 /**
  *
  * @author Gilderlan
  */
 public class Utilities {
-    
-    public static String getFormatedDate(){
+
+    public static String getFormatedDate() {
         Date date = new Date();
         SimpleDateFormat formated = new SimpleDateFormat("dd/MM/yyyy");
         String format = formated.format(date);
         return format;
     }
 
-    public static Date getFormatedDate(String stringDate){
+    public static Date getFormatedDate(String stringDate) {
         SimpleDateFormat formated = new SimpleDateFormat("dd/MM/yyyy");
         Date newDate = null;
         try {
@@ -51,13 +51,25 @@ public class Utilities {
         return formated.format(d);
     }
 
-    public static Double monetaryToDouble(String monetary){
+    public static String dataCompleta() {
+        Locale locale = new Locale("pt", "BR");
+        GregorianCalendar calendar = new GregorianCalendar();
+        SimpleDateFormat data = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH:mm:ss", locale);
+        return data.format(calendar.getTime());
+    }
+
+    public static String padRight(String s, int n) {
+        return String.format("%1$-" + n + "s", s);
+    }
+
+
+    public static Double monetaryToDouble(String monetary) {
         monetary = monetary.substring(3, monetary.length());
         Number n = null;
         try {
             n = NumberFormat.getNumberInstance(Locale.getDefault()).parse(monetary);
         } catch (ParseException ex) {
-            ex.printStackTrace();
+            Funcoes.erro("Erro: " + ex.getLocalizedMessage());
         }
         return n.doubleValue();
     }
@@ -67,21 +79,22 @@ public class Utilities {
         return s;
     }
 
-    public String getMonetaryDoubleCaseNegative(String Monetary){
+    public String getMonetaryDoubleCaseNegative(String Monetary) {
         //converter monetário para double
         return Monetary.substring(2);
     }
 
     public static Boolean verifyCNPJ(String cpf) {
-        if(Validate.validaCPF(cpf))
+        if (Validate.validaCPF(cpf)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public static String passwordToString(char[] c) {
         StringBuffer sb1 = new StringBuffer();
-        for (int i=0; i < c.length; i++) {
+        for (int i = 0; i < c.length; i++) {
             sb1.append(c[i]);
         }
         return sb1.toString();
@@ -92,7 +105,7 @@ public class Utilities {
         df.setLenient(false); // aqui o pulo do gato
         try {
             df.parse(d);
-             // data válida
+            // data válida
         } catch (ParseException ex) {
             // data inválida
             return false;

@@ -1,0 +1,4 @@
+Versão 1.0.5 => 28/04/2011
+  Refatoração da Classe GerarBpa, retirando códigos da view e passando para o model;
+  Inserida essa tela com a leitura do arquivo leiame.txt;
+  Retirados métodos que se repetiam na classe GerarBpa e colocados em uma classe chamada Funcoes;
