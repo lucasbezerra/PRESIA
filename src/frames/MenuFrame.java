@@ -3,24 +3,37 @@ package frames;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Competencia;
 import utilitarios.Funcoes;
+import utilitarios.ReadWritePropertiesFile;
 
 /**
  * @author luciano
  */
 public class MenuFrame extends javax.swing.JFrame {
 
-    /** Creates new form MenuFrame */
-    public MenuFrame() {
-        initComponents();
-        this.setResizable(false);
-    }
+  ArrayList<String> configuracao = new ArrayList<String>();
 
-    @SuppressWarnings("unchecked")
+  private void lerConfiguracao() {
+    configuracao.clear();
+    configuracao.add(ReadWritePropertiesFile.ReadProperty("config.properties", "str_mes"));
+    configuracao.add(ReadWritePropertiesFile.ReadProperty("config.properties", "str_ano"));
+  }
+
+  /** Creates new form MenuFrame */
+  public MenuFrame() {
+    initComponents();
+    lerConfiguracao();
+    
+    Competencia.setMes(configuracao.get(0));
+    Competencia.setAno(configuracao.get(1));
+    jLabel1.setText("   COMPETÊNCIA: " + String.format("%02d", Integer.parseInt(Competencia.getMes())) + "/" + String.format("%02d", Integer.parseInt(Competencia.getAno())));
+    this.setResizable(false);
+  }
+
+  @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -65,7 +78,7 @@ public class MenuFrame extends javax.swing.JFrame {
 
     jToolBar1.setRollover(true);
 
-    btCompetencia.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+    btCompetencia.setFont(new java.awt.Font("Ubuntu", 0, 12));
     btCompetencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cal1.gif"))); // NOI18N
     btCompetencia.setText("Competência");
     btCompetencia.setToolTipText("Definir Competência");
@@ -117,7 +130,7 @@ public class MenuFrame extends javax.swing.JFrame {
     });
     jToolBar1.add(btGerarBpa);
 
-    btSobre.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+    btSobre.setFont(new java.awt.Font("Ubuntu", 0, 12));
     btSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sobre.jpg"))); // NOI18N
     btSobre.setText("Sobre ...");
     btSobre.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -134,12 +147,14 @@ public class MenuFrame extends javax.swing.JFrame {
     });
     jToolBar1.add(btSobre);
 
-    btLeiame.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+    btLeiame.setFont(new java.awt.Font("Ubuntu", 0, 12));
     btLeiame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leiame.gif"))); // NOI18N
     btLeiame.setText("Leiame");
     btLeiame.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
     btLeiame.setFocusable(false);
     btLeiame.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btLeiame.setMaximumSize(new java.awt.Dimension(100, 39));
+    btLeiame.setMinimumSize(new java.awt.Dimension(100, 39));
     btLeiame.setPreferredSize(new java.awt.Dimension(100, 39));
     btLeiame.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     btLeiame.addActionListener(new java.awt.event.ActionListener() {
@@ -186,41 +201,41 @@ public class MenuFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btCompetenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompetenciaActionPerformed
-      Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
-      CompetenciaFrame cmpt = new CompetenciaFrame(this, true);
-      this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
-      cmpt.setVisible(true);
-      jLabel1.setText("   COMPETÊNCIA: " + String.format("%02d", Integer.parseInt(Competencia.getMes())) + "/" + String.format("%02d", Integer.parseInt(Competencia.getAno())));
+    Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
+    CompetenciaFrame cmpt = new CompetenciaFrame(this, true);
+    this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
+    cmpt.setVisible(true);
+    jLabel1.setText("   COMPETÊNCIA: " + String.format("%02d", Integer.parseInt(Competencia.getMes())) + "/" + String.format("%02d", Integer.parseInt(Competencia.getAno())));
   }//GEN-LAST:event_btCompetenciaActionPerformed
 
   private void btGerarBpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarBpaActionPerformed
-      if (Competencia.getAno() != null) {
-          Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
-          GerarBpaFrame bpa = null;
-          try {
-              bpa = new GerarBpaFrame(this, true);
-          } catch (SQLException ex) {
-              Funcoes.erro(ex.getLocalizedMessage());
-          }
-          this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
-          bpa.setVisible(true);
-      } else {
-          JOptionPane.showMessageDialog(this, "Nenhuma Competência Definida!");
+    if (Competencia.getAno() != null) {
+      Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
+      GerarBpaFrame bpa = null;
+      try {
+        bpa = new GerarBpaFrame(this, true);
+      } catch (SQLException ex) {
+        Funcoes.erro(ex.getLocalizedMessage());
       }
+      this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
+      bpa.setVisible(true);
+    } else {
+      JOptionPane.showMessageDialog(this, "Nenhuma Competência Definida!");
+    }
   }//GEN-LAST:event_btGerarBpaActionPerformed
 
   private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-      System.exit(0);
+    System.exit(0);
   }//GEN-LAST:event_btSairActionPerformed
 
   private void btConfiguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfiguraActionPerformed
-      Configuracao configura = new Configuracao(this, true);
-      configura.setVisible(true);
+    Configuracao configura = new Configuracao(this, true);
+    configura.setVisible(true);
   }//GEN-LAST:event_btConfiguraActionPerformed
 
   private void btSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSobreActionPerformed
-      SobreFrame about = new SobreFrame();
-      about.setVisible(true);
+    SobreFrame about = new SobreFrame();
+    about.setVisible(true);
   }//GEN-LAST:event_btSobreActionPerformed
 
   private void btLeiameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLeiameActionPerformed
@@ -228,17 +243,17 @@ public class MenuFrame extends javax.swing.JFrame {
     leiame.setVisible(true);
   }//GEN-LAST:event_btLeiameActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[]) {
+    java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
-                new MenuFrame().setVisible(true);
-            }
-        });
-    }
+      public void run() {
+        new MenuFrame().setVisible(true);
+      }
+    });
+  }
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btCompetencia;
   private javax.swing.JButton btConfigura;

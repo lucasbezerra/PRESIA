@@ -2,3 +2,10 @@ Versão 1.0.5 => 28/04/2011
   Refatoração da Classe GerarBpa, retirando códigos da view e passando para o model;
   Inserida essa tela com a leitura do arquivo leiame.txt;
   Retirados métodos que se repetiam na classe GerarBpa e colocados em uma classe chamada Funcoes;
+
+Versão 1.0.6 => 14/06/2011
+  Ajustada a rotina de Geração de Individualizado, para, se raca_cor == '05', gerar Etnia '0001', aguardando márcio informar a tabela correta.
+
+Versão 1.0.7 => 06/01/2012
+  Ajustada rotina que verifica o CNS do Profissional, gerando brancos no BPA;
+  Incluído aviso na Geração do BPA, quando encontrar profissionais SEM CNS para BPA-I.

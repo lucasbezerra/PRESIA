@@ -19,6 +19,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   public static String localBPA = null;
   public static String localLOG = null;
   public static String codCNES = null;
+  String msg_gerado = null;
   String controle = null;
   String cabecalho = null;
   ResultSet result = null;
@@ -33,7 +34,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_cnsmed = Utilities.padRight(" ", 15);
   String prd_cbo = null;
   String prd_dtaten = Utilities.padRight(" ", 8);
-  
   String prd_pa = null;
   String prd_cnspac = Utilities.padRight(" ", 15);
   String prd_sexo = " ";
@@ -45,13 +45,11 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_naut = Utilities.padRight(" ", 13);
   String prd_nmpac = Utilities.padRight(" ", 13);
   String prd_dtnasc = Utilities.padRight(" ", 8);
-  
   String prd_raca = null;
-  String prd_etnia = Utilities.padRight(" ", 4);
+  String prd_etnia = null;
   String prd_nac = null;
   String cns_prf_1 = null;
   String cns_prf_2 = null;
-  
   public static ArrayList<String> configuracao = new ArrayList<String>();
 
   public static void lerVariaveis() {
@@ -226,33 +224,34 @@ public class GerarBpaFrame extends javax.swing.JDialog {
           return;
         }
 
-        String ano = Competencia.getAno();
+        int ano = Integer.parseInt(Competencia.getAno());
         int mes = Integer.parseInt(Competencia.getMes());
         String str_mes = String.format("%02d", mes);
+        String str_ano = String.valueOf(ano);
         String ups = Unidade.getCnes();
         String nome_ups = Funcoes.ajustaNome(Unidade.getNome());
         String sigla_ups = Utilities.padRight(ups.substring(0, 6), 6);
         String cnpj = Unidade.getCnpj();
         String org_destino = Utilities.padRight("SECRETARIA MUNICIPAL DE SAUDE", 40);
         String in_org_destino = "M";
-        String versao = Utilities.padRight("VER1.0.5", 10);
+        String versao = Utilities.padRight("VER1.0.7", 10);
         String arq_bpa = ConfiguraLocalBpa();
         String arq_log = ConfiguraLocalLog();
         Funcoes.zeraTXT(arq_bpa);
         Funcoes.zeraTXT(arq_log);
         Funcoes.gravaLog(Utilities.dataCompleta() + " Checando se existem boletos confirmados ...\n", arq_log);
         try {
-          boolean retorno = Bpa.PossuiDados();
+          boolean retorno = Bpa.PossuiDados(mes, ano, ups);
           if (retorno) {
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gerando campo de Controle ...\n", arq_log);
-            controle = Bpa.GeraCampoControle();
+            controle = Bpa.GeraCampoControle(mes, ano, ups);
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando o Cabeçalho do Arquivo ...\n", arq_log);
             nFolha = 1;
             nLinha = 1;
-            cabecalho = "#BPA#" + ano + str_mes + controle + nome_ups + sigla_ups + cnpj + org_destino + in_org_destino + versao + "\n";
+            cabecalho = "#BPA#" + str_ano + str_mes + controle + nome_ups + sigla_ups + cnpj + org_destino + in_org_destino + versao + "\n";
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando Procedimentos SEM Idade ...\n", arq_log);
             Funcoes.gravaTXT(cabecalho, arq_bpa);
-            result = Bpa.gerarBPASemIdade();
+            result = Bpa.gerarBPASemIdade(mes, ano, ups);
             result.last();
             nRec = result.getRow();
             result.beforeFirst();
@@ -276,7 +275,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
               }
             }
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando Procedimentos COM Idade ...\n", arq_log);
-            result = Bpa.gerarBPAComIdade();
+            result = Bpa.gerarBPAComIdade(mes, ano, ups);
             result.last();
             nRec = result.getRow();
             result.beforeFirst();
@@ -301,7 +300,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
               }
             }
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando Procedimentos Individualizados ...\n", arq_log);
-            result = Bpa.gerarBPAIndividualizado();
+            result = Bpa.gerarBPAIndividualizado(mes, ano, ups);
             nFolha = 1;
             nLinha = 1;
             result.last();
@@ -309,14 +308,19 @@ public class GerarBpaFrame extends javax.swing.JDialog {
             result.beforeFirst();
             if (nRec > 0) {
               while (result.next()) {
+                if ("".equals(result.getString("cns_prof"))) {
+                  msg_gerado = "Atenção: Encontrados Profissionais SEM CNS!\nSua produção PODERÁ ser rejeitada no SIA \n\nRotina de Geração do BPA Concluída";
+                } else {
+                  msg_gerado = "Rotina de Geração do BPA Concluída";
+                }
                 if ((cns_prf_1 != null && cns_prf_2 != null) && cns_prf_1.compareTo(cns_prf_2) > 0) {
                   nLinha = 1;
                   nFolha += 1;
                 }
                 prd_cnes = result.getString("cnes");
                 prd_cmp = result.getString("ano_mes");
-                prd_cnsmed = result.getString("cns_prof");
-                cns_prf_1 = result.getString("cns_prof");
+                prd_cnsmed = "".equals(result.getString("cns_prof")) ? Utilities.padRight(" ", 15) : result.getString("cns_prof");
+                cns_prf_1 = "".equals(result.getString("cns_prof")) ? Utilities.padRight(" ", 15) : result.getString("cns_prof");
                 prd_cbo = result.getString("cbo");
                 prd_dtaten = result.getString("data_atend");
                 prd_folha = String.format("%03d", nFolha);
@@ -332,6 +336,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_nmpac = (result.getString("nome_paciente").length() <= 30) ? Utilities.padRight(result.getString("nome_paciente"), 30) : result.getString("nome_paciente").substring(0, 30);
                 prd_dtnasc = result.getString("data_nasc");
                 prd_raca = result.getString("raca_cor");
+                prd_etnia = prd_raca.equals("05") ? "0001" : Utilities.padRight(" ", 4);
                 prd_nac = result.getString("prd_nac");
 
                 linha = prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + "I" + prd_raca + prd_etnia + prd_nac + "\n";
@@ -347,7 +352,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
             }
             FileUtil util = new FileUtil();
             util.removeLineFromFile(arq_bpa, "\n");
-            JOptionPane.showMessageDialog(null, "Rotina de Geração do BPA Concluída");
+            JOptionPane.showMessageDialog(null, msg_gerado);
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravação Finalizada: " + arq_bpa, arq_log);
           } else {
             JOptionPane.showMessageDialog(null, "Sem dados para geração do BPA.");
