@@ -1,4 +1,4 @@
-package frames;
+package telas;
 
 import apsia.Criptografia;
 import java.util.ArrayList;
@@ -134,7 +134,7 @@ public class SobreFrame extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 30));
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-538)/2, (screenSize.height-234)/2, 538, 234);
+        setBounds((screenSize.width-519)/2, (screenSize.height-234)/2, 519, 234);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

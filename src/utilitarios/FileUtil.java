@@ -26,11 +26,11 @@ public class FileUtil {
     }
 
     BufferedReader br = new BufferedReader(new FileReader(arquivo));
-    StringBuffer bufSaida = new StringBuffer();
+    StringBuilder bufSaida = new StringBuilder();
 
     String linha;
     while ((linha = br.readLine()) != null) {
-      bufSaida.append(linha + "\n");
+      bufSaida.append(linha).append("\n");
     }
     br.close();
     return bufSaida.toString();
@@ -67,9 +67,9 @@ public class FileUtil {
       }
 
     } catch (FileNotFoundException ex) {
-      System.out.println("Arquivo não encontrado!");
+      System.out.println("Arquivo não encontrado!" + ex.getLocalizedMessage());
     } catch (IOException ex) {
-      System.out.println("Erro ao manippular o arquivo!");
+      System.out.println("Erro ao manippular o arquivo!" + ex.getLocalizedMessage());
     }
   }
 }

@@ -1,7 +1,8 @@
 package apsia;
 
+import java.io.IOException;
 import java.sql.SQLException;
-import frames.MenuFrame;
+import telas.MenuFrame;
 import utilitarios.Licence;
 
 /**
@@ -9,7 +10,7 @@ import utilitarios.Licence;
  */
 public class Main {
 
-  public static void main(String[] args) throws SQLException {
+  public static void main(String[] args) throws SQLException, IOException {
     Licence licenca = new Licence();
     licenca.Verify();
     MenuFrame menu = new MenuFrame();

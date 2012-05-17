@@ -88,7 +88,7 @@ public class Bpa {
     stmt = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
     String sql = "select usp.cod_cnes as CNES,c.ano_ref||lpad(cast(c.mes_ref as varchar), 2, '0') as ano_mes, prof.cod_cns as CNS_PROF, cbo.cod_cbo_ocupacao as CBO,"
             + " cast(extract(year from d.dta_marcada) as varchar)||lpad(cast(extract(month from d.dta_marcada) as varchar), 2, '0')||lpad(cast(extract(day from d.dta_marcada) as varchar), 2, '0') as DATA_ATEND,"
-            + " p.cod_proced as COD_PRC, pe.cod_cartao_sus as CNS_PAC, pe.sexo as SEXO_PAC, substring(MNC.COD_IBGE from 1 for 6) as IBGE, cid.cod_cid AS CID10,"
+            + " p.cod_proced as COD_PRC, lpad(pe.cod_cartao_sus, 15, '0') as CNS_PAC, pe.sexo as SEXO_PAC, substring(MNC.COD_IBGE from 1 for 6) as IBGE, cid.cod_cid AS CID10,"
             + " lpad(cast(date_part('YEAR', age(current_date, pe.dta_nasc)) as varchar), 3, '0') as idade, lpad(cast(sum(d.qtde_proced) as varchar), 6, '0') as quantidade,"
             + " c.cod_cab_aut_cmr as AUTORIZACAO, pe.nome as nome_paciente,"
             + " cast(extract(year from pe.dta_nasc) as varchar)||lpad(cast(extract(month from pe.dta_nasc) as varchar), 2, '0')||lpad(cast(extract(day from pe.dta_nasc) as varchar), 2, '0') as DATA_NASC,"
@@ -111,7 +111,6 @@ public class Bpa {
             + " order by cns_prof, autorizacao";
     System.out.println(sql);
     ResultSet dados = stmt.executeQuery(sql);
-    Funcoes.gravaLog(sql + "\n", "sql.txt");
     return dados;
   }
 

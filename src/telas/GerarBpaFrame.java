@@ -1,24 +1,27 @@
-package frames;
+package telas;
 
-import apsia.Criptografia;
-import model.Unidade;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Bpa;
 import model.Competencia;
+import model.Unidade;
 import utilitarios.FileUtil;
 import utilitarios.Funcoes;
-import utilitarios.ReadWritePropertiesFile;
 import utilitarios.Utilities;
 
 public class GerarBpaFrame extends javax.swing.JDialog {
 
   public static String os = System.getProperty("os.name");
-  public static String localBPA = null;
-  public static String localLOG = null;
   public static String codCNES = null;
+  String arq_bpa = null;
+  String arq_log = null;
+  String localBPA = null;
+  String localLog = null;
   String msg_gerado = null;
   String controle = null;
   String cabecalho = null;
@@ -50,44 +53,36 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_nac = null;
   String cns_prf_1 = null;
   String cns_prf_2 = null;
-  public static ArrayList<String> configuracao = new ArrayList<String>();
 
-  public static void lerVariaveis() {
-    configuracao.clear();
-    configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "PastaBpa")));
-    configuracao.add(Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("config.properties", "PastaLog")));
-  }
-
-  public static String ConfiguraLocalBpa() {
-    String loc_bpa = null;
-    lerVariaveis();
+  public static String ConfiguraLocalBpa() throws IOException {
+    String loc_bpa = "";
+    String loc_base = new File(".").getCanonicalPath();
     if (os.equals("Linux")) {
-      loc_bpa = configuracao.get(0) + "/PA" + Unidade.getCnes().substring(0, 6) + Funcoes.geraExtensao();
+      loc_bpa = loc_base + "/bpa/";
     } else {
-      loc_bpa = configuracao.get(0) + "\\PA" + Unidade.getCnes().substring(0, 6) + Funcoes.geraExtensao();
+      loc_bpa = loc_base + "\\bpa\\";
     }
     return loc_bpa;
   }
 
-  public static String ConfiguraLocalLog() {
-    String loc_log = null;
-    lerVariaveis();
+  public static String ConfiguraLocalLog() throws IOException {
+    String loc_log = "";
+    String loc_base = new File(".").getCanonicalPath();
     if (os.equals("Linux")) {
-      loc_log = configuracao.get(1) + "/PA" + Unidade.getCnes().substring(0, 6) + ".LOG";
+      loc_log = loc_base + "/log/";
     } else {
-      loc_log = configuracao.get(1) + "\\PA" + Unidade.getCnes().substring(0, 6) + ".LOG";
+      loc_log = loc_base + "\\log\\";
     }
     return loc_log;
   }
 
-  public GerarBpaFrame(java.awt.Frame parent, boolean modal) throws SQLException {
+  public GerarBpaFrame(java.awt.Frame parent, boolean modal) throws SQLException, IOException {
     super(parent, modal);
     initComponents();
-    lerVariaveis();
-    localBPA = configuracao.get(0);
-    lblBpa.setText(localBPA);
-    localLOG = configuracao.get(1);
-    lblLog.setText(localLOG);
+    localBPA = ConfiguraLocalBpa();
+    localLog = ConfiguraLocalLog();
+    lblLocalBpa.setText(localBPA);
+    lblLocalLog.setText(localLog);
   }
 
   @SuppressWarnings("unchecked")
@@ -98,17 +93,17 @@ public class GerarBpaFrame extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblCnes = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btSelecionaUnidade = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lblBpa = new javax.swing.JLabel();
-        lblLog = new javax.swing.JLabel();
-        lblUnidade = new javax.swing.JLabel();
+        lblLocalBpa = new javax.swing.JLabel();
+        lblLocalLog = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblArquivoBPA = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btExportar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -118,72 +113,84 @@ public class GerarBpaFrame extends javax.swing.JDialog {
         setTitle("Exportar BPA");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Parâmetros"));
-        jPanel1.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parâmetros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel1.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Código:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 21, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText(" ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 21, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Cnes:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 21, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Andale Mono", 0, 14));
-        jLabel5.setText(" ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 21, -1, -1));
+        lblCnes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCnes.setText(" ");
+        jPanel1.add(lblCnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 21, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Estabelecimento:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 49, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText(" ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 49, -1, -1));
 
-        btSelecionaUnidade.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        btSelecionaUnidade.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
         btSelecionaUnidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filter.gif"))); // NOI18N
         btSelecionaUnidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSelecionaUnidadeActionPerformed(evt);
             }
         });
-        jPanel1.add(btSelecionaUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 52, 30));
+        jPanel1.add(btSelecionaUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 52, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 80));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Seletores"));
-        jPanel2.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Destino do Arquivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Andale Mono", 0, 14));
-        jLabel3.setText("Unidade:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 27, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Local do Bpa:");
+        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 85, -1));
 
-        jLabel8.setFont(new java.awt.Font("Andale Mono", 0, 14));
-        jLabel8.setText("Bpa:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 75, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("Local do Log:");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 85, -1));
 
-        jLabel9.setFont(new java.awt.Font("Andale Mono", 0, 14));
-        jLabel9.setText("Log:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 123, -1, -1));
+        lblLocalBpa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLocalBpa.setText("LOCAL BPA");
+        lblLocalBpa.setName(""); // NOI18N
+        jPanel2.add(lblLocalBpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
-        lblBpa.setText(" ");
-        jPanel2.add(lblBpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 75, -1, -1));
+        lblLocalLog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLocalLog.setText("LOCAL LOG");
+        jPanel2.add(lblLocalLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
-        lblLog.setText(" ");
-        jPanel2.add(lblLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 123, -1, -1));
-        jPanel2.add(lblUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 27, -1, -1));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Arquivo BPA:");
+        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 85, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 580, 160));
+        lblArquivoBPA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblArquivoBPA.setText("ARQUIVO BPA");
+        jPanel2.add(lblArquivoBPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 570, 150));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel3.setFont(new java.awt.Font("Andale Mono", 0, 14));
+        jPanel3.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(580, 30));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -197,7 +204,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 btExportarActionPerformed(evt);
             }
         });
-        jPanel3.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 1, 125, 30));
+        jPanel3.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 125, 30));
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cancelar.PNG"))); // NOI18N
         btCancelar.setText("Cancelar");
@@ -206,24 +213,23 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 btCancelarActionPerformed(evt);
             }
         });
-        jPanel3.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 1, 125, 30));
+        jPanel3.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 125, 30));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 570, 35));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 570, 35));
 
         lblStatus.setText(" ");
         getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-598)/2, (screenSize.height-390)/2, 598, 390);
+        setBounds((screenSize.width-598)/2, (screenSize.height-354)/2, 598, 354);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
       if (Competencia.getAno() != null) {
-        if ((lblUnidade.getText() == null) || ("".equals(lblUnidade.getText()))) {
+        if ((lblCnes.getText() == null) || ("".equals(lblCnes.getText()))) {
           Funcoes.erro("Nenhum Estabelecimento Selecionado!");
           return;
         }
-
         int ano = Integer.parseInt(Competencia.getAno());
         int mes = Integer.parseInt(Competencia.getMes());
         String str_mes = String.format("%02d", mes);
@@ -235,8 +241,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
         String org_destino = Utilities.padRight("SECRETARIA MUNICIPAL DE SAUDE", 40);
         String in_org_destino = "M";
         String versao = Utilities.padRight("VER1.0.7", 10);
-        String arq_bpa = ConfiguraLocalBpa();
-        String arq_log = ConfiguraLocalLog();
         Funcoes.zeraTXT(arq_bpa);
         Funcoes.zeraTXT(arq_log);
         Funcoes.gravaLog(Utilities.dataCompleta() + " Checando se existem boletos confirmados ...\n", arq_log);
@@ -311,7 +315,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 if ("".equals(result.getString("cns_prof"))) {
                   msg_gerado = "Atenção: Encontrados Profissionais SEM CNS!\nSua produção PODERÁ ser rejeitada no SIA \n\nRotina de Geração do BPA Concluída";
                 } else {
-                  msg_gerado = "Rotina de Geração do BPA Concluída";
+                  msg_gerado = "Rotina de Geração do BPA Concluída\n\nCampo de Controle: ";
                 }
                 if ((cns_prf_1 != null && cns_prf_2 != null) && cns_prf_1.compareTo(cns_prf_2) > 0) {
                   nLinha = 1;
@@ -350,9 +354,10 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 cns_prf_2 = result.getString("cns_prof");
               }
             }
+            String xcontrole = controle.substring(12);
             FileUtil util = new FileUtil();
             util.removeLineFromFile(arq_bpa, "\n");
-            JOptionPane.showMessageDialog(null, msg_gerado);
+            JOptionPane.showMessageDialog(null, msg_gerado + "\n\nCampo de Controle: " + xcontrole);
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravação Finalizada: " + arq_bpa, arq_log);
           } else {
             JOptionPane.showMessageDialog(null, "Sem dados para geração do BPA.");
@@ -367,18 +372,21 @@ public class GerarBpaFrame extends javax.swing.JDialog {
     }//GEN-LAST:event_btExportarActionPerformed
 
     private void btSelecionaUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionaUnidadeActionPerformed
-      UnidadeFrame unidade = new UnidadeFrame(null, true);
-      unidade.setTitle("Selecionar Estabelecimento");
-      unidade.setVisible(true);
-      String nome_unidade = Unidade.getNome();
-      jLabel2.setText(Unidade.getCodigo());
-      jLabel5.setText(Unidade.getCnes());
-      if (nome_unidade.length() <= 40) {
-        lblUnidade.setText(Unidade.getNome());
-        jLabel7.setText(Unidade.getNome());
-      } else {
-        lblUnidade.setText(Unidade.getNome().substring(0, 40));
-        jLabel7.setText(Unidade.getNome().substring(0, 40));
+      try {
+        UnidadeFrame unidade = new UnidadeFrame(null, true);
+        unidade.setTitle("Selecionar Estabelecimento");
+        unidade.setVisible(true);
+        String nome_unidade = Unidade.getNome().length() <= 40 ? Unidade.getNome() : Unidade.getNome().substring(0, 40);
+        jLabel2.setText(Unidade.getCodigo());
+        lblCnes.setText(Unidade.getCnes());
+        jLabel7.setText(nome_unidade);
+
+        arq_bpa = ConfiguraLocalBpa() + "PA" + Unidade.getCnes().substring(0, 6) + Funcoes.geraExtensao();
+        arq_log = ConfiguraLocalLog() + "PA" + Unidade.getCnes().substring(0, 6) + ".LOG";
+
+        lblArquivoBPA.setText("PA" + Unidade.getCnes().substring(0, 6) + Funcoes.geraExtensao());
+      } catch (IOException ex) {
+        Logger.getLogger(GerarBpaFrame.class.getName()).log(Level.SEVERE, null, ex);
       }
     }//GEN-LAST:event_btSelecionaUnidadeActionPerformed
 
@@ -392,7 +400,11 @@ public class GerarBpaFrame extends javax.swing.JDialog {
       public void run() {
         GerarBpaFrame dialog = null;
         try {
-          dialog = new GerarBpaFrame(new javax.swing.JFrame(), true);
+          try {
+            dialog = new GerarBpaFrame(new javax.swing.JFrame(), true);
+          } catch (IOException ex) {
+            Logger.getLogger(GerarBpaFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
         } catch (SQLException ex) {
           System.out.println("Erro: " + ex.getMessage());
         }
@@ -412,10 +424,9 @@ public class GerarBpaFrame extends javax.swing.JDialog {
     private javax.swing.JButton btExportar;
     private javax.swing.JButton btSelecionaUnidade;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -423,9 +434,10 @@ public class GerarBpaFrame extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblBpa;
-    private javax.swing.JLabel lblLog;
+    private javax.swing.JLabel lblArquivoBPA;
+    private javax.swing.JLabel lblCnes;
+    private javax.swing.JLabel lblLocalBpa;
+    private javax.swing.JLabel lblLocalLog;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JLabel lblUnidade;
     // End of variables declaration//GEN-END:variables
 }
