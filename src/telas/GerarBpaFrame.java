@@ -32,6 +32,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_folha = null;
   String prd_linha = null;
   String linha = null;
+  String prd_ident = null;
   String prd_cnes = null;
   String prd_cmp = null;
   String prd_cnsmed = Utilities.padRight(" ", 15);
@@ -44,7 +45,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_cid = Utilities.padRight(" ", 4);
   String prd_idade = Utilities.padRight(" ", 3);
   String prd_qtd = null;
-  String prd_caten = Utilities.padRight(" ", 2);
+  String prd_caten = null;
   String prd_naut = Utilities.padRight(" ", 13);
   String prd_nmpac = Utilities.padRight(" ", 13);
   String prd_dtnasc = Utilities.padRight(" ", 8);
@@ -86,143 +87,240 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   }
 
   @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblCnes = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btSelecionaUnidade = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        lblLocalBpa = new javax.swing.JLabel();
-        lblLocalLog = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lblArquivoBPA = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btExportar = new javax.swing.JButton();
-        btCancelar = new javax.swing.JButton();
-        lblStatus = new javax.swing.JLabel();
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    lblCnes = new javax.swing.JLabel();
+    jLabel6 = new javax.swing.JLabel();
+    jLabel7 = new javax.swing.JLabel();
+    btSelecionaUnidade = new javax.swing.JButton();
+    jPanel2 = new javax.swing.JPanel();
+    jLabel8 = new javax.swing.JLabel();
+    jLabel9 = new javax.swing.JLabel();
+    lblLocalBpa = new javax.swing.JLabel();
+    lblLocalLog = new javax.swing.JLabel();
+    jLabel10 = new javax.swing.JLabel();
+    lblArquivoBPA = new javax.swing.JLabel();
+    jPanel3 = new javax.swing.JPanel();
+    btExportar = new javax.swing.JButton();
+    btCancelar = new javax.swing.JButton();
+    lblStatus = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Exportar BPA");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setTitle("Exportar BPA");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parâmetros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
-        jPanel1.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parâmetros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+    jPanel1.setFont(new java.awt.Font("Andale Mono", 0, 14));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Código:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 21, -1, -1));
+    jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel1.setText("Código:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText(" ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 21, -1, -1));
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel2.setText(" ");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Cnes:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 21, -1, -1));
+    jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel4.setText("Cnes:");
 
-        lblCnes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCnes.setText(" ");
-        jPanel1.add(lblCnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 21, -1, -1));
+    lblCnes.setFont(new java.awt.Font("Tahoma", 0, 14));
+    lblCnes.setText(" ");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Estabelecimento:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 49, -1, -1));
+    jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel6.setText("Estabelecimento:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText(" ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 49, -1, -1));
+    jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel7.setText(" ");
 
-        btSelecionaUnidade.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
-        btSelecionaUnidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filter.gif"))); // NOI18N
-        btSelecionaUnidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSelecionaUnidadeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btSelecionaUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 52, 30));
+    btSelecionaUnidade.setFont(new java.awt.Font("Andale Mono", 0, 14));
+    btSelecionaUnidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filter.gif"))); // NOI18N
+    btSelecionaUnidade.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btSelecionaUnidadeActionPerformed(evt);
+      }
+    });
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 80));
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(12, 12, 12)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel1)
+            .addGap(14, 14, 14)
+            .addComponent(jLabel2)
+            .addGap(68, 68, 68)
+            .addComponent(jLabel4)
+            .addGap(13, 13, 13)
+            .addComponent(lblCnes)
+            .addGap(306, 306, 306)
+            .addComponent(btSelecionaUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel6)
+            .addGap(30, 30, 30)
+            .addComponent(jLabel7))))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(btSelecionaUnidade)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(11, 11, 11)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel1)
+              .addComponent(jLabel2)
+              .addComponent(jLabel4)
+              .addComponent(lblCnes))))
+        .addGap(9, 9, 9)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jLabel6)
+          .addComponent(jLabel7)))
+    );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Destino do Arquivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
-        jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Destino do Arquivo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+    jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Local do Bpa:");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 85, -1));
+    jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel8.setText("Local do Bpa:");
+    jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Local do Log:");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 85, -1));
+    jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel9.setText("Local do Log:");
+    jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblLocalBpa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblLocalBpa.setText("LOCAL BPA");
-        lblLocalBpa.setName(""); // NOI18N
-        jPanel2.add(lblLocalBpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+    lblLocalBpa.setFont(new java.awt.Font("Tahoma", 0, 14));
+    lblLocalBpa.setText("LOCAL BPA");
+    lblLocalBpa.setName(""); // NOI18N
 
-        lblLocalLog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblLocalLog.setText("LOCAL LOG");
-        jPanel2.add(lblLocalLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+    lblLocalLog.setFont(new java.awt.Font("Tahoma", 0, 14));
+    lblLocalLog.setText("LOCAL LOG");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Arquivo BPA:");
-        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 85, -1));
+    jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14));
+    jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel10.setText("Arquivo BPA:");
+    jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        lblArquivoBPA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblArquivoBPA.setText("ARQUIVO BPA");
-        jPanel2.add(lblArquivoBPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+    lblArquivoBPA.setFont(new java.awt.Font("Tahoma", 0, 14));
+    lblArquivoBPA.setText("ARQUIVO BPA");
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 570, 150));
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGap(4, 4, 4)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(15, 15, 15)
+            .addComponent(lblLocalBpa))
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(15, 15, 15)
+            .addComponent(lblArquivoBPA))
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(15, 15, 15)
+            .addComponent(lblLocalLog)))
+        .addContainerGap(359, Short.MAX_VALUE))
+    );
+    jPanel2Layout.setVerticalGroup(
+      jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel2Layout.createSequentialGroup()
+        .addGap(7, 7, 7)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jLabel8)
+          .addComponent(lblLocalBpa))
+        .addGap(23, 23, 23)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jLabel10)
+          .addComponent(lblArquivoBPA))
+        .addGap(23, 23, 23)
+        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jLabel9)
+          .addComponent(lblLocalLog)))
+    );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel3.setFont(new java.awt.Font("Andale Mono", 0, 14)); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(580, 30));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    jPanel3.setFont(new java.awt.Font("Andale Mono", 0, 14));
+    jPanel3.setPreferredSize(new java.awt.Dimension(580, 30));
 
-        btExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exportar.PNG"))); // NOI18N
-        btExportar.setText("Exportar");
-        btExportar.setMaximumSize(new java.awt.Dimension(80, 25));
-        btExportar.setMinimumSize(new java.awt.Dimension(80, 25));
-        btExportar.setPreferredSize(new java.awt.Dimension(80, 25));
-        btExportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExportarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 125, 30));
+    btExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exportar.PNG"))); // NOI18N
+    btExportar.setText("Exportar");
+    btExportar.setMaximumSize(new java.awt.Dimension(80, 25));
+    btExportar.setMinimumSize(new java.awt.Dimension(80, 25));
+    btExportar.setPreferredSize(new java.awt.Dimension(80, 25));
+    btExportar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btExportarActionPerformed(evt);
+      }
+    });
 
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cancelar.PNG"))); // NOI18N
-        btCancelar.setText("Cancelar");
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 125, 30));
+    btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cancelar.PNG"))); // NOI18N
+    btCancelar.setText("Cancelar");
+    btCancelar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btCancelarActionPerformed(evt);
+      }
+    });
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 570, 35));
+    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+    jPanel3.setLayout(jPanel3Layout);
+    jPanel3Layout.setHorizontalGroup(
+      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel3Layout.createSequentialGroup()
+        .addGap(309, 309, 309)
+        .addComponent(btExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(5, 5, 5)
+        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
+    jPanel3Layout.setVerticalGroup(
+      jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(btExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addComponent(btCancelar)
+    );
 
-        lblStatus.setText(" ");
-        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+    lblStatus.setText(" ");
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-598)/2, (screenSize.height-354)/2, 598, 354);
-    }// </editor-fold>//GEN-END:initComponents
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(10, 10, 10)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(10, 10, 10)
+            .addComponent(lblStatus))
+          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)))
+        .addContainerGap(14, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(10, 10, 10)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(10, 10, 10)
+        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(20, 20, 20)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(lblStatus)))
+    );
+
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    setBounds((screenSize.width-614)/2, (screenSize.height-354)/2, 614, 354);
+  }// </editor-fold>//GEN-END:initComponents
 
     private void btExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarActionPerformed
       if (Competencia.getAno() != null) {
@@ -249,7 +347,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
           if (retorno) {
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gerando campo de Controle ...\n", arq_log);
             controle = Bpa.GeraCampoControle(mes, ano, ups);
-            Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando o Cabeçalho do Arquivo ...\n", arq_log);
+            Funcoes.gravaLog(Utilities.dataCompleta() + " Gerando campo de Controle ...\n", arq_log);
             nFolha = 1;
             nLinha = 1;
             cabecalho = "#BPA#" + str_ano + str_mes + controle + nome_ups + sigla_ups + cnpj + org_destino + in_org_destino + versao + "\n";
@@ -263,12 +361,13 @@ public class GerarBpaFrame extends javax.swing.JDialog {
               while (result.next()) {
                 prd_folha = String.format("%03d", nFolha);
                 prd_linha = String.format("%02d", nLinha);
+                prd_ident = result.getString("ident");
                 prd_cnes = result.getString("cnes");
                 prd_cmp = result.getString("ano") + result.getString("mes");
                 prd_cbo = result.getString("cbo");
                 prd_pa = result.getString("cod_prc");
                 prd_qtd = result.getString("quantidade");
-                linha = prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + Utilities.padRight(" ", 2) + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -287,13 +386,14 @@ public class GerarBpaFrame extends javax.swing.JDialog {
               while (result.next()) {
                 prd_folha = String.format("%03d", nFolha);
                 prd_linha = String.format("%02d", nLinha);
+                prd_ident = result.getString("ident");
                 prd_cnes = result.getString("cnes");
                 prd_cmp = result.getString("ano") + result.getString("mes");
                 prd_cbo = result.getString("cbo");
                 prd_pa = result.getString("cod_prc");
                 prd_idade = result.getString("idade");
                 prd_qtd = result.getString("quantidade");
-                linha = prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + Utilities.padRight(" ", 2) + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -321,6 +421,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                   nLinha = 1;
                   nFolha += 1;
                 }
+                prd_ident = result.getString("ident");
                 prd_cnes = result.getString("cnes");
                 prd_cmp = result.getString("ano_mes");
                 prd_cnsmed = "".equals(result.getString("cns_prof")) ? Utilities.padRight(" ", 15) : result.getString("cns_prof");
@@ -330,12 +431,13 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_folha = String.format("%03d", nFolha);
                 prd_linha = String.format("%02d", nLinha);
                 prd_pa = result.getString("cod_prc");
-                prd_cnspac = result.getString("cns_pac") == null ? Utilities.padRight(" ", 15) : result.getString("cns_pac");
+                prd_cnspac = result.getString("cns_pac") == null ? Utilities.padRight(" ", 15) :  (result.getString("cns_pac").length() <= 15 ? Utilities.padRight(result.getString("cns_pac"), 15) : result.getString("cns_pac").substring(0, 15));
                 prd_sexo = result.getString("sexo_pac");
                 prd_ibge = result.getString("ibge");
                 prd_cid = result.getString("cid10") == null ? Utilities.padRight(" ", 4) : Utilities.padRight(result.getString("cid10"), 4);
                 prd_idade = result.getString("idade");
                 prd_qtd = result.getString("quantidade");
+                prd_caten = result.getString("caten");
                 prd_naut = result.getString("autorizacao");
                 prd_nmpac = (result.getString("nome_paciente").length() <= 30) ? Utilities.padRight(result.getString("nome_paciente"), 30) : result.getString("nome_paciente").substring(0, 30);
                 prd_dtnasc = result.getString("data_nasc");
@@ -343,7 +445,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_etnia = prd_raca.equals("05") ? "0001" : Utilities.padRight(" ", 4);
                 prd_nac = result.getString("prd_nac");
 
-                linha = prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + "I" + prd_raca + prd_etnia + prd_nac + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + "I" + prd_raca + prd_etnia + prd_nac + "\n";
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -419,25 +521,25 @@ public class GerarBpaFrame extends javax.swing.JDialog {
       }
     });
   }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btExportar;
-    private javax.swing.JButton btSelecionaUnidade;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblArquivoBPA;
-    private javax.swing.JLabel lblCnes;
-    private javax.swing.JLabel lblLocalBpa;
-    private javax.swing.JLabel lblLocalLog;
-    private javax.swing.JLabel lblStatus;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btCancelar;
+  private javax.swing.JButton btExportar;
+  private javax.swing.JButton btSelecionaUnidade;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel10;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel jLabel8;
+  private javax.swing.JLabel jLabel9;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JPanel jPanel3;
+  private javax.swing.JLabel lblArquivoBPA;
+  private javax.swing.JLabel lblCnes;
+  private javax.swing.JLabel lblLocalBpa;
+  private javax.swing.JLabel lblLocalLog;
+  private javax.swing.JLabel lblStatus;
+  // End of variables declaration//GEN-END:variables
 }

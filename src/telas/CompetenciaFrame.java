@@ -56,7 +56,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
         jComboBox1.setName("comboMes"); // NOI18N
 
         jComboBox2.setMaximumRowCount(3);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2012", "2013", "2014" }));
         jComboBox2.setName("comboAno"); // NOI18N
 
         btDefinir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconOK.gif"))); // NOI18N
@@ -85,7 +85,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(btDefinir, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +100,7 @@ public class CompetenciaFrame extends javax.swing.JDialog {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(btDefinir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();

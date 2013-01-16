@@ -87,40 +87,31 @@ public class Configuracao extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         editServidor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         editServidor.setName("editServidor"); // NOI18N
-        getContentPane().add(editServidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 32, 115, 30));
 
         jLabel1.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel1.setText("Host:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, -1));
 
         editBanco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         editBanco.setName("editBanco"); // NOI18N
-        getContentPane().add(editBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 32, 186, 30));
 
         editUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(editUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 82, 115, 30));
 
         jLabel4.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel4.setText("Senha:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel2.setText("Banco:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel3.setText("Usuário:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 90, -1));
 
         editSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         editSenha.setMaximumSize(new java.awt.Dimension(50, 21));
         editSenha.setMinimumSize(new java.awt.Dimension(50, 21));
         editSenha.setPreferredSize(new java.awt.Dimension(50, 21));
-        getContentPane().add(editSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 82, 187, 30));
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-24x24.png"))); // NOI18N
         btCancelar.setText("Cancelar");
@@ -132,7 +123,6 @@ public class Configuracao extends javax.swing.JDialog {
                 btCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 124, -1));
 
         btGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconOK.gif"))); // NOI18N
         btGravar.setText("Gravar");
@@ -144,7 +134,6 @@ public class Configuracao extends javax.swing.JDialog {
                 btGravarActionPerformed(evt);
             }
         });
-        getContentPane().add(btGravar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 135, -1));
 
         btTestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/testarConexao.PNG"))); // NOI18N
         btTestar.setText("Testar");
@@ -157,23 +146,18 @@ public class Configuracao extends javax.swing.JDialog {
                 btTestarActionPerformed(evt);
             }
         });
-        getContentPane().add(btTestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 125, -1));
 
         jLabel6.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel6.setText("Pasta BPA:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Andale Mono", 0, 18)); // NOI18N
         jLabel7.setText("Pasta Log:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         editPastaBpa.setEditable(false);
         editPastaBpa.setEnabled(false);
-        getContentPane().add(editPastaBpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 132, 289, 30));
 
         editPastaLog.setEditable(false);
         editPastaLog.setEnabled(false);
-        getContentPane().add(editPastaLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 182, 291, 30));
 
         jButton1.setText("...");
         jButton1.setEnabled(false);
@@ -182,7 +166,6 @@ public class Configuracao extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 34, 30));
 
         jButton2.setText("...");
         jButton2.setEnabled(false);
@@ -191,7 +174,94 @@ public class Configuracao extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 34, 30));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(editServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(editBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(editUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel4)
+                        .addGap(4, 4, 4)
+                        .addComponent(editSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)
+                        .addComponent(editPastaBpa, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(10, 10, 10)
+                        .addComponent(editPastaLog, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btTestar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(editPastaBpa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(editPastaLog, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btTestar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-556)/2, (screenSize.height-325)/2, 556, 325);
