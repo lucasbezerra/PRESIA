@@ -54,6 +54,8 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_nac = null;
   String cns_prf_1 = null;
   String cns_prf_2 = null;
+  String prd_srv = null;
+  String prd_clf = null;
 
   public static String ConfiguraLocalBpa() throws IOException {
     String loc_bpa = "";
@@ -338,7 +340,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
         String cnpj = Unidade.getCnpj();
         String org_destino = Utilities.padRight("SECRETARIA MUNICIPAL DE SAUDE", 40);
         String in_org_destino = "M";
-        String versao = Utilities.padRight("VER1.0.7", 10);
+        String versao = Utilities.padRight("VER1.0.8", 10);
         Funcoes.zeraTXT(arq_bpa);
         Funcoes.zeraTXT(arq_log);
         Funcoes.gravaLog(Utilities.dataCompleta() + " Checando se existem boletos confirmados ...\n", arq_log);
@@ -350,7 +352,8 @@ public class GerarBpaFrame extends javax.swing.JDialog {
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gerando campo de Controle ...\n", arq_log);
             nFolha = 1;
             nLinha = 1;
-            cabecalho = "#BPA#" + str_ano + str_mes + controle + nome_ups + sigla_ups + cnpj + org_destino + in_org_destino + versao + "\n";
+            cabecalho = "01#BPA#" + str_ano + str_mes + controle + nome_ups + sigla_ups + cnpj + org_destino + in_org_destino + versao + "\n";
+            System.out.println(cabecalho);
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravando Procedimentos SEM Idade ...\n", arq_log);
             Funcoes.gravaTXT(cabecalho, arq_bpa);
             result = Bpa.gerarBPASemIdade(mes, ano, ups);
@@ -367,7 +370,8 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_cbo = result.getString("cbo");
                 prd_pa = result.getString("cod_prc");
                 prd_qtd = result.getString("quantidade");
-                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + Utilities.padRight(" ", 2) + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cbo + prd_folha + prd_linha + prd_pa + prd_idade + prd_qtd + "BPA" + "\n";
+                //         2           7         6         6          3          2           10        3           6        3           
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -393,7 +397,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_pa = result.getString("cod_prc");
                 prd_idade = result.getString("idade");
                 prd_qtd = result.getString("quantidade");
-                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + Utilities.padRight(" ", 26) + prd_idade + prd_qtd + Utilities.padRight(" ", 2) + prd_naut + "BPA" + Utilities.padRight(" ", 38) + "C" + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cbo + prd_folha + prd_linha + prd_pa + prd_idade + prd_qtd + "BPA" + "\n";
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -444,8 +448,11 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_raca = result.getString("raca_cor");
                 prd_etnia = prd_raca.equals("05") ? "0001" : Utilities.padRight(" ", 4);
                 prd_nac = result.getString("prd_nac");
+                prd_srv = Utilities.padRight(" ", 3);
+                prd_clf = Utilities.padRight(" ", 3);
 
-                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + "I" + prd_raca + prd_etnia + prd_nac + "\n";
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + prd_raca + prd_etnia + prd_nac + prd_srv + prd_clf +"\n";
+                //        2            7           6         15          6          8           3            2         10       15            1          6         4          3           6         2           13        3       30            8           2          4         3          3          3
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;

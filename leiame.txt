@@ -10,3 +10,6 @@ Versão 1.0.7 => 06/01/2012
   Ajustada rotina que verifica o CNS do Profissional, gerando brancos no BPA;
   Incluído aviso na Geração do BPA, quando encontrar profissionais SEM CNS para BPA-I.
   Desabilitada opção de configuração das pastas de BPA e LOG, passando a pegar do caminho absoluto da aplicação.
+
+Versão 1.0.8 => 22/01/2013
+  Atualizado Layout do BPA, conforme instruções do Datasus (www.datasus.gov.br), passando a iniciar a linha do header com '01' e as linhas detalhe com '02' ou '03', conforme o tipo de Procedimento
