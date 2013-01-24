@@ -5,3 +5,4 @@ dist/*
 log/*
 bpa/*
 doc/*.zip
+doc/*.sql
