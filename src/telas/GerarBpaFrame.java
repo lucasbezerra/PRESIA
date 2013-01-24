@@ -22,7 +22,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String arq_log = null;
   String localBPA = null;
   String localLog = null;
-  String msg_gerado = null;
   String controle = null;
   String cabecalho = null;
   ResultSet result = null;
@@ -35,7 +34,8 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_ident = null;
   String prd_cnes = null;
   String prd_cmp = null;
-  String prd_cnsmed = Utilities.padRight(" ", 15);
+  String prd_cnsmed = null;
+  String cns_prof_1 = null;
   String prd_cbo = null;
   String prd_dtaten = Utilities.padRight(" ", 8);
   String prd_pa = null;
@@ -52,8 +52,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
   String prd_raca = null;
   String prd_etnia = null;
   String prd_nac = null;
-  String cns_prf_1 = null;
-  String cns_prf_2 = null;
   String prd_srv = null;
   String prd_clf = null;
 
@@ -369,7 +367,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_pa = result.getString("cod_prc");
                 prd_qtd = result.getString("quantidade");
                 linha = prd_ident + prd_cnes + prd_cmp + prd_cbo + prd_folha + prd_linha + prd_pa + prd_idade + prd_qtd + "BPA" + "\n";
-                //         2           7         6         6          3          2           10        3           6        3           
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -413,27 +410,24 @@ public class GerarBpaFrame extends javax.swing.JDialog {
             nRec = result.getRow();
             result.beforeFirst();
             if (nRec > 0) {
+              nLinha = 1;
+              nFolha += 1;
               while (result.next()) {
-                if ("".equals(result.getString("cns_prof"))) {
-                  msg_gerado = "Atenção: Encontrados Profissionais SEM CNS!\nSua produção PODERÁ ser rejeitada no SIA \n\nRotina de Geração do BPA Concluída";
-                } else {
-                  msg_gerado = "Rotina de Geração do BPA Concluída\n\nCampo de Controle: ";
-                }
-                if ((cns_prf_1 != null && cns_prf_2 != null) && cns_prf_1.compareTo(cns_prf_2) > 0) {
+                prd_cnsmed = result.getString("cns_prof");
+                if(prd_cnsmed.compareTo(cns_prof_1) > 0){
+                  nFolha = 1;
                   nLinha = 1;
-                  nFolha += 1;
                 }
+                cns_prof_1 = result.getString("cns_prof");
                 prd_ident = result.getString("ident");
                 prd_cnes = result.getString("cnes");
                 prd_cmp = result.getString("ano_mes");
-                prd_cnsmed = "".equals(result.getString("cns_prof")) ? Utilities.padRight(" ", 15) : result.getString("cns_prof");
-                cns_prf_1 = "".equals(result.getString("cns_prof")) ? Utilities.padRight(" ", 15) : result.getString("cns_prof");
                 prd_cbo = result.getString("cbo");
                 prd_dtaten = result.getString("data_atend");
                 prd_folha = String.format("%03d", nFolha);
                 prd_linha = String.format("%02d", nLinha);
                 prd_pa = result.getString("cod_prc");
-                prd_cnspac = result.getString("cns_pac") == null ? Utilities.padRight(" ", 15) :  (result.getString("cns_pac").length() <= 15 ? Utilities.padRight(result.getString("cns_pac"), 15) : result.getString("cns_pac").substring(0, 15));
+                prd_cnspac = result.getString("cns_pac") == null ? Utilities.padRight(" ", 15) : (result.getString("cns_pac").length() <= 15 ? Utilities.padRight(result.getString("cns_pac"), 15) : result.getString("cns_pac").substring(0, 15));
                 prd_sexo = result.getString("sexo_pac");
                 prd_ibge = result.getString("ibge");
                 prd_cid = result.getString("cid10") == null ? Utilities.padRight(" ", 4) : Utilities.padRight(result.getString("cid10"), 4);
@@ -448,9 +442,7 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 prd_nac = result.getString("prd_nac");
                 prd_srv = Utilities.padRight(" ", 3);
                 prd_clf = Utilities.padRight(" ", 3);
-
-                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + prd_raca + prd_etnia + prd_nac + prd_srv + prd_clf +"\n";
-                //        2            7           6         15          6          8           3            2         10       15            1          6         4          3           6         2           13        3       30            8           2          4         3          3          3
+                linha = prd_ident + prd_cnes + prd_cmp + prd_cnsmed + prd_cbo + prd_dtaten + prd_folha + prd_linha + prd_pa + prd_cnspac + prd_sexo + prd_ibge + prd_cid + prd_idade + prd_qtd + prd_caten + prd_naut + "BPA" + prd_nmpac + prd_dtnasc + prd_raca + prd_etnia + prd_nac + prd_srv + prd_clf + "\n";
                 Funcoes.gravaTXT(linha, arq_bpa);
                 if (nLinha == 20) {
                   nLinha = 1;
@@ -458,13 +450,12 @@ public class GerarBpaFrame extends javax.swing.JDialog {
                 } else {
                   nLinha += 1;
                 }
-                cns_prf_2 = result.getString("cns_prof");
               }
             }
             String xcontrole = controle.substring(12);
             FileUtil util = new FileUtil();
             util.removeLineFromFile(arq_bpa, "\n");
-            JOptionPane.showMessageDialog(null, msg_gerado + "\n\nCampo de Controle: " + xcontrole);
+            JOptionPane.showMessageDialog(null, "Rotina de Geração do BPA Concluída\n\nCampo de Controle: " + xcontrole);
             Funcoes.gravaLog(Utilities.dataCompleta() + " Gravação Finalizada: " + arq_bpa, arq_log);
           } else {
             JOptionPane.showMessageDialog(null, "Sem dados para geração do BPA.");
@@ -503,7 +494,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
 
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
-
       public void run() {
         GerarBpaFrame dialog = null;
         try {
@@ -516,7 +506,6 @@ public class GerarBpaFrame extends javax.swing.JDialog {
           System.out.println("Erro: " + ex.getMessage());
         }
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
           @Override
           public void windowClosing(java.awt.event.WindowEvent e) {
             System.exit(0);

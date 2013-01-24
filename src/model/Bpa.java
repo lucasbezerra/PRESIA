@@ -108,7 +108,7 @@ public class Bpa {
             + " left join municipio mnc on PE.id_municipio_res=mnc.id_municipio"
             + " left join cid cid on d.id_cid=cid.id_cid"
             + " left join raca_cor rc on pe.id_raca_cor = rc.id_raca_cor"
-            + " where EXTRACT(YEAR FROM d.dta_marcada)=" + ano + " and EXTRACT(month FROM d.dta_marcada)=" + mes + " and pr.id_registro=2 and usp.cod_cnes='" + ups + "' and d.id_status_cmr_aut=1"
+            + " where EXTRACT(YEAR FROM d.dta_marcada)=" + ano + " and EXTRACT(month FROM d.dta_marcada)=" + mes + " and pr.id_registro=2 and usp.cod_cnes='" + ups + "' and d.id_status_cmr_aut=1 and prof.cod_cns is not null"
             + " group by ident, cnes, ano_mes, cns_prof, cid10, cbo, data_atend, cod_prc, cns_pac, sexo_pac, ibge, idade, autorizacao, nome_paciente, data_nasc, raca_cor, prd_nac"
             + " order by ident, cns_prof, autorizacao";
     Funcoes.gravaLog(sql + "\n", "sql.txt");
