@@ -2,4 +2,6 @@
 nbproject/*
 dist/*
 /bpa/
-/log/
+log/*
+bpa/*
+doc/*.zip

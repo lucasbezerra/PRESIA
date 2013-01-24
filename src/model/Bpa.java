@@ -28,6 +28,7 @@ public class Bpa {
             + "inner join det_aut_cmr detalhe on cabecalho.id_cab_aut_cmr = detalhe.id_cab_aut_cmr "
             + "inner join unidade_saude usp on cabecalho.id_usp = usp.id_unidade_saude "
             + "where cabecalho.ano_ref=" + ano + " and cabecalho.mes_ref=" + mes + " and usp.cod_cnes='" + ups + "' and detalhe.id_status_cmr_aut=1";
+      System.out.println(sql);
     result = stmt.executeQuery(sql);
     result.next();
     retorno = result.getInt("retorno");
@@ -141,11 +142,11 @@ public class Bpa {
             + "order by CNES, ANO,MES,COD_PRC,CBO ";
     result = stmt.executeQuery(sql);
     result.last();
-    numLinhas = numLinhas + result.getRow();
+    numLinhas += result.getRow();
     result.beforeFirst();
     while (result.next()) {
-      somaProcedimentos = somaProcedimentos + result.getLong("cod_prc");
-      somaQuantidades = somaQuantidades + result.getInt("quantidade");
+      somaProcedimentos += result.getLong("cod_prc");
+      somaQuantidades   += result.getLong("quantidade");
     }
     sql = "select usp.cod_cnes as CNES, c.ano_ref as ANO, lpad(cast(c.mes_ref as varchar), 2, '0') as MES, cbo.cod_cbo_ocupacao as CBO, "
             + "p.cod_proced as cod_prc, lpad(cast(date_part('YEAR', age(current_date, pe.dta_nasc)) as varchar), 3, '0') as IDADE, "
@@ -165,11 +166,11 @@ public class Bpa {
             + "order by cnes, ano, mes, cbo, cod_prc, idade";
     result = stmt.executeQuery(sql);
     result.last();
-    numLinhas = numLinhas + result.getRow();
+    numLinhas += result.getRow();
     result.beforeFirst();
     while (result.next()) {
-      somaProcedimentos = somaProcedimentos + result.getLong("cod_prc");
-      somaQuantidades = somaQuantidades + result.getInt("quantidade");
+      somaProcedimentos += result.getLong("cod_prc");
+      somaQuantidades   += result.getLong("quantidade");
     }
 
     sql = "select usp.cod_cnes as CNES,c.ano_ref||lpad(cast(c.mes_ref as varchar), 2, '0') as ano_mes, prof.cod_cns as CNS_PROF, cbo.cod_cbo_ocupacao as CBO,"
@@ -197,14 +198,13 @@ public class Bpa {
             + " order by cns_prof, autorizacao";
     result = stmt.executeQuery(sql);
     result.last();
-    numLinhas = numLinhas + result.getRow();
+    numLinhas += result.getRow();
     result.beforeFirst();
     while (result.next()) {
-      somaProcedimentos = somaProcedimentos + result.getLong("cod_prc");
-      somaQuantidades = somaQuantidades + result.getInt("quantidade");
+      somaProcedimentos += result.getLong("cod_prc");
+      somaQuantidades   += result.getLong("quantidade");
     }
-    controle = ((somaProcedimentos + somaQuantidades) % 1111);
-    controle = controle + 1111;
+    controle = ((somaProcedimentos + somaQuantidades) % 1111) + 1111;
     numFolhas = ((numLinhas % 20 == 0) ? (numLinhas / 20) : (Math.ceil(numLinhas / 20)));
 
     String linhas = String.format("%06d", (int) numLinhas);
