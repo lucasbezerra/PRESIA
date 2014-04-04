@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Competencia;
-import utilitarios.Funcoes;
 import utilitarios.ReadWritePropertiesFile;
 
 /**
@@ -211,19 +210,15 @@ public class MenuFrame extends javax.swing.JFrame {
 
   private void btGerarBpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarBpaActionPerformed
     if (Competencia.getAno() != null) {
-      Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
-      GerarBpaFrame bpa = null;
+      GeraBPA bpa;
       try {
-        try {
-          bpa = new GerarBpaFrame(this, true);
-        } catch (IOException ex) {
-          Logger.getLogger(MenuFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      } catch (SQLException ex) {
-        Funcoes.erro(ex.getLocalizedMessage());
+        bpa = new GeraBPA();
+        Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
+        bpa.setVisible(true);
+      } catch (SQLException | IOException ex) {
+        System.out.println(ex.getLocalizedMessage());
       }
-      this.setLocation((tela.width - this.getSize().width) / 2, (tela.height - this.getSize().height) / 2);
-      bpa.setVisible(true);
     } else {
       JOptionPane.showMessageDialog(this, "Nenhuma Competência Definida!");
     }
@@ -253,7 +248,6 @@ public class MenuFrame extends javax.swing.JFrame {
    */
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
-
       public void run() {
         try {
           new MenuFrame().setVisible(true);

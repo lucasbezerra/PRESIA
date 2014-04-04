@@ -14,8 +14,8 @@ public class SobreFrame extends javax.swing.JFrame {
     private static String[] lerDatas() {
         String licenca = Criptografia.DecriptaBase64(ReadWritePropertiesFile.ReadProperty("licence.properties", "Licence"));
         String[] array = new String[2];
-        array[0] = licenca.substring(10, 12) + "/" + licenca.substring(12, 14) + "/" + licenca.substring(14, 18);
-        array[1] = licenca.substring(28, 30) + "/" + licenca.substring(30, 32) + "/" + licenca.substring(32, 36);
+        array[0] = licenca.substring(14, 16) + "/" + licenca.substring(16, 18) + "/" + licenca.substring(18, 22);
+        array[1] = licenca.substring(32, 34) + "/" + licenca.substring(34, 36) + "/" + licenca.substring(36, 40);
         return array;
     }
 
@@ -54,137 +54,100 @@ public class SobreFrame extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    jLabel6 = new javax.swing.JLabel();
+    jLabel7 = new javax.swing.JLabel();
+    jLabel8 = new javax.swing.JLabel();
+    jLabel10 = new javax.swing.JLabel();
+    jLabel11 = new javax.swing.JLabel();
+    jLabel12 = new javax.swing.JLabel();
+    jLabel13 = new javax.swing.JLabel();
+    jLabel14 = new javax.swing.JLabel();
+    jButton1 = new javax.swing.JButton();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Sobre o Sistema ...");
-        setResizable(false);
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setTitle("Sobre o Sistema ...");
+    setResizable(false);
+    getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel1.setText("Protocolo.:");
+    jLabel1.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel1.setText("Protocolo.:");
+    getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, 80, -1));
 
-        jLabel2.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel2.setText("Host/Banco:");
+    jLabel2.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel2.setText("Host/Banco:");
+    getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 10, 78, -1));
 
-        jLabel4.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel4.setText("Usuário...:");
+    jLabel4.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel4.setText("Usuário...:");
+    getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 80, -1));
 
-        jLabel5.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel5.setText("Senha....:");
+    jLabel5.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel5.setText("Senha....:");
+    getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 50, 78, -1));
 
-        jLabel6.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel6.setText("Utilizado.:");
+    jLabel6.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel6.setText("Utilizado.:");
+    getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 96, 80, -1));
 
-        jLabel7.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel7.setText("a");
+    jLabel7.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel7.setText("a");
+    getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 12, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel8.setText("a");
+    jLabel8.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel8.setText("a");
+    getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 190, -1));
 
-        jLabel10.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel10.setText("a");
+    jLabel10.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel10.setText("a");
+    getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 50, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel11.setText("a");
+    jLabel11.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel11.setText("a");
+    getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 50, 187, -1));
 
-        jLabel12.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel12.setText("a");
+    jLabel12.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel12.setText("a");
+    getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 96, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel13.setText("Expira...:");
+    jLabel13.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabel13.setText("Expira...:");
+    getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 96, 75, -1));
 
-        jLabel14.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        jLabel14.setText("a");
+    jLabel14.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel14.setText("a");
+    getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 96, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-24x24.png"))); // NOI18N
-        jButton1.setText("Fechar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-24x24.png"))); // NOI18N
+    jButton1.setText("Fechar");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+    getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel7)
-                .addGap(130, 130, 130)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel8))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel10)
-                .addGap(130, 130, 130)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel11))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel12)
-                .addGap(130, 130, 130)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel14))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(370, 370, 370)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7))))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel11))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addGap(50, 50, 50)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+    jLabel3.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+    jLabel3.setText("Versão....:");
+    getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 136, 80, -1));
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-519)/2, (screenSize.height-234)/2, 519, 234);
-    }// </editor-fold>//GEN-END:initComponents
+    jLabel9.setText("1.1.1");
+    getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    setBounds((screenSize.width-512)/2, (screenSize.height-234)/2, 512, 234);
+  }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -198,19 +161,21 @@ public class SobreFrame extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton jButton1;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel10;
+  private javax.swing.JLabel jLabel11;
+  private javax.swing.JLabel jLabel12;
+  private javax.swing.JLabel jLabel13;
+  private javax.swing.JLabel jLabel14;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel jLabel8;
+  private javax.swing.JLabel jLabel9;
+  // End of variables declaration//GEN-END:variables
 }

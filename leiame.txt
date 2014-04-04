@@ -1,15 +1,29 @@
-Versão 1.0.5 => 28/04/2011
-  Refatoração da Classe GerarBpa, retirando códigos da view e passando para o model;
+Versao 1.0.5 => 28/04/2011
+  Refatoracao da Classe GerarBpa, retirando codigos da view e passando para o model;
   Inserida essa tela com a leitura do arquivo leiame.txt;
   Retirados métodos que se repetiam na classe GerarBpa e colocados em uma classe chamada Funcoes;
 
-Versão 1.0.6 => 14/06/2011
-  Ajustada a rotina de Geração de Individualizado, para, se raca_cor == '05', gerar Etnia '0001', aguardando márcio informar a tabela correta.
+Versao 1.0.6 => 14/06/2011
+  Ajustada a rotina de Geracao de Individualizado, para, se raca_cor == '05', gerar Etnia '0001', aguardando márcio informar a tabela correta.
 
-Versão 1.0.7 => 06/01/2012
+Versao 1.0.7 => 06/01/2012
   Ajustada rotina que verifica o CNS do Profissional, gerando brancos no BPA;
-  Incluído aviso na Geração do BPA, quando encontrar profissionais SEM CNS para BPA-I.
-  Desabilitada opção de configuração das pastas de BPA e LOG, passando a pegar do caminho absoluto da aplicação.
+  Incluido aviso na Geracao do BPA, quando encontrar profissionais SEM CNS para BPA-I.
+  Desabilitada opcao de configuracao das pastas de BPA e LOG, passando a pegar do caminho absoluto da aplicacao.
 
-Versão 1.0.8 => 22/01/2013
-  Atualizado Layout do BPA, conforme instruções do Datasus (www.datasus.gov.br), passando a iniciar a linha do header com '01' e as linhas detalhe com '02' ou '03', conforme o tipo de Procedimento
+Versao 1.0.8 => 22/01/2013
+  Atualizado Layout do BPA, conforme instrucões do Datasus (www.datasus.gov.br), passando a iniciar a linha do header com '01' e as linhas detalhe com '02' ou '03', conforme o tipo de Procedimento
+
+Versao 1.0.9 => 24/01/2013
+  Passa a nao levar os procedimentos de BPA-I, cujo profissional esteja sem o CNS preenchido;
+  Adicionado caractere '01' no header e '02'/'03' no detalhe do arquivo, conforme layout;
+
+Versao 1.1.0 => 17/05/2013
+  Alteracoes de layout, em atendimento a portaria que implementa a gravacao de informacoes do paiente
+  (telefone, email, etc);
+  
+Versao 1.1.1 => 21/05/2013
+  Incluida Critica para REJEITAR procedimentos realizados, cujo CNS DO PROFISSIONAL esteja vazio ou incompleto;
+  Incluido relatorio chamado "invalidos.txt" que exibira os procedimentos rejeitados conforme regra acima. O arquivo
+  estara na mesma pasta do programa (dependendo do SO, ele podera aparecer na area de trabalho;
+  O relatorio acima sera gerado a partir do botao "Verifica CNS" localizado na tela de geracao do BPA;

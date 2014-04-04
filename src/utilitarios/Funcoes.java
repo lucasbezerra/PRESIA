@@ -63,6 +63,17 @@ public class Funcoes {
         }
     }
 
+    public static void gravaErros(String texto, String local) {
+        String conteudo = texto;
+        try {
+            FileWriter x = new FileWriter(local, true);
+            x.write(conteudo);
+            x.close();
+        } catch (Exception erro) {
+            erro("Erro na Gravação do Log " + erro);
+        }
+    }
+
     public static String geraExtensao() {
         int mes = Integer.parseInt(Competencia.getMes());
         String extensao = null;
