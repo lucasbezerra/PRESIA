@@ -26,4 +26,4 @@ Versao 1.1.1 => 21/05/2013
   Incluida Critica para REJEITAR procedimentos realizados, cujo CNS DO PROFISSIONAL esteja vazio ou incompleto;
   Incluido relatorio chamado "invalidos.txt" que exibira os procedimentos rejeitados conforme regra acima. O arquivo
   estara na mesma pasta do programa (dependendo do SO, ele podera aparecer na area de trabalho;
-  O relatorio acima sera gerado a partir do botao "Verifica CNS" localizado na tela de geracao do BPA;
+  O relatorio acima sera gerado a partir do botao "Verifica CNS" localizado na tela de geracao do BPA
